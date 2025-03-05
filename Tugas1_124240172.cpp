@@ -3,13 +3,11 @@
 
 using namespace std;
 
-// Struktur untuk merepresentasikan data buku
 struct Buku {
     string judul;
     int tahunTerbit;
 };
 
-// Fungsi untuk menampilkan daftar buku
 void tampilkanDaftarBuku(Buku buku[], int n) {
     cout << "\nDaftar Buku:\n";
     for (int i = 0; i < n; i++) {
@@ -17,7 +15,6 @@ void tampilkanDaftarBuku(Buku buku[], int n) {
     }
 }
 
-// Fungsi untuk mengurutkan buku dengan Bubble Sort
 void bubbleSort(Buku buku[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
@@ -30,7 +27,6 @@ void bubbleSort(Buku buku[], int n) {
     }
 }
 
-// Fungsi untuk mengurutkan buku dengan Quick Sort
 int partition(Buku buku[], int low, int high) {
     int pivot = buku[high].tahunTerbit;
     int i = low - 1;
@@ -57,24 +53,22 @@ void quickSort(Buku buku[], int low, int high) {
     }
 }
 
-// Fungsi untuk mencari buku menggunakan Sequential Search
 int sequentialSearch(Buku buku[], int n, int tahun) {
     for (int i = 0; i < n; i++) {
         if (buku[i].tahunTerbit == tahun) {
-            return i; // Mengembalikan indeks buku yang ditemukan
+            return i; 
         }
     }
-    return -1; // Buku tidak ditemukan
+    return -1; 
 }
 
-// Fungsi untuk mencari buku menggunakan Binary Search
 int binarySearch(Buku buku[], int n, int tahun) {
     int low = 0, high = n - 1;
     while (low <= high) {
         int mid = low + (high - low) / 2;
 
         if (buku[mid].tahunTerbit == tahun) {
-            return mid; // Mengembalikan indeks buku yang ditemukan
+            return mid; 
         }
         else if (buku[mid].tahunTerbit < tahun) {
             low = mid + 1;
@@ -83,14 +77,13 @@ int binarySearch(Buku buku[], int n, int tahun) {
             high = mid - 1;
         }
     }
-    return -1; // Buku tidak ditemukan
+    return -1; 
 }
 
-// Fungsi untuk input data buku
 void inputDataBuku(Buku buku[], int& n) {
     cout << "Masukkan jumlah buku yang ingin ditambahkan: ";
     cin >> n;
-    cin.ignore(); // Mengabaikan newline character setelah memasukkan angka
+    cin.ignore(); 
     for (int i = 0; i < n; i++) {
         cout << "\nMasukkan Judul Buku ke-" << (i + 1) << ": ";
         getline(cin, buku[i].judul);
@@ -103,7 +96,7 @@ void inputDataBuku(Buku buku[], int& n) {
 int main() {
     const int MAX_BUKU = 10;
     Buku buku[MAX_BUKU];
-    int n = 0; // Jumlah buku yang dimasukkan
+    int n = 0; 
     int pilihan;
 
     do {
@@ -117,7 +110,7 @@ int main() {
              << "\n7. Keluar"
              << "\nPilihan Anda: ";
         cin >> pilihan;
-        cin.ignore(); // Mengabaikan newline character setelah memasukkan angka
+        cin.ignore(); 
 
         switch (pilihan) {
             case 1: {
@@ -179,7 +172,7 @@ int main() {
                     int tahun;
                     cout << "Masukkan tahun terbit buku yang dicari: ";
                     cin >> tahun;
-                    // Sebelum melakukan binary search, pastikan data sudah terurut
+                    
                     quickSort(buku, 0, n - 1);
                     int hasil = binarySearch(buku, n, tahun);
                     if (hasil != -1) {
